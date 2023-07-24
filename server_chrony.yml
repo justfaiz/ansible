@@ -1,0 +1,23 @@
+# server_chrony.yml 
+---
+- name: Set Chrony Server
+  hosts: localhost
+  tasks:
+    - name: 1. Edit /etc/chrony.conf
+      lineinfile:
+        path: /etc/chrony.conf
+        regexp: '^pool'
+        line: "server 118.163.81.61 iburst"
+        state: present
+      notify:
+        - service_restart
+        - service_state
+          
+  handlers:
+    - name: service_restart
+      service:
+        name: chronyd
+        state: restarted
+    - name: service_state
+      shell: 'chronyc sources -v'
+...   
