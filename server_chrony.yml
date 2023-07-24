@@ -20,4 +20,9 @@
         state: restarted
     - name: service_state
       shell: 'chronyc sources -v'
-...   
+      register: chrony_state
+    - name: Display chronyc sources -v
+      degug: var=chrony_state
+
+...
+
