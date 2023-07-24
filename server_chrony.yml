@@ -22,7 +22,7 @@
       shell: 'chronyc sources -v'
       register: chrony_state
     - name: Display chronyc sources -v
-      degug: var=chrony_state
+      debug: var=chrony_state
 
 ...
 
